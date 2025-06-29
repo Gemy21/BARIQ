@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - بريق/BARIQ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Alexandria:wght@700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css">
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css">
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-solid-straight/css/uicons-solid-straight.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Variables to match main page */
+        :root {
+            --white: #ffffff;
+            --light-purple: #f8f9ff;
+            --dark-purple: #4d2272;
+            --accent-purple: #881dbf;
+            --text-dark: #1f2937;
+            --text-light: #ffffff;
+            --text-muted: #6b7280;
+            --gradient-primary: linear-gradient(135deg, #881dbf 0%, #4d2272 100%);
+            --gradient-secondary: linear-gradient(135deg, #881dbf 0%, #6b21a8 100%);
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .portfolio-hero {
+            background: var(--gradient-primary);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portfolio-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .portfolio-hero-gradient {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(120deg, rgba(136,29,191,0.3) 0%, rgba(77,34,114,0.3) 100%);
+            background-size: 200% 200%;
+            animation: gradientMove 8s ease-in-out infinite alternate;
+            z-index: 1;
+            pointer-events: none;
+        }
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        .portfolio-hero-bg-icons {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .portfolio-hero-bg-icons .fi {
+            position: absolute;
+            font-size: 4rem;
+            opacity: 0.13;
+            color: #fff;
+            filter: blur(0.5px) drop-shadow(0 2px 8px rgba(0,0,0,0.1));
+            animation: floatIcon 7s ease-in-out infinite;
+        }
+        .portfolio-hero-bg-icons .fi:nth-child(1) { top: 10%; left: 12%; animation-delay: 0s; }
+        .portfolio-hero-bg-icons .fi:nth-child(2) { top: 60%; left: 8%; animation-delay: 1.5s; }
+        .portfolio-hero-bg-icons .fi:nth-child(3) { top: 25%; right: 10%; animation-delay: 3s; }
+        .portfolio-hero-bg-icons .fi:nth-child(4) { bottom: 18%; left: 50%; transform: translateX(-50%); animation-delay: 2s; }
+        .portfolio-hero-bg-icons .fi:nth-child(5) { top: 40%; right: 20%; animation-delay: 4s; }
+        @keyframes floatIcon {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-25px) scale(1.1); }
+        }
+
+        .portfolio-hero-content {
+            position: relative;
+            z-index: 3;
+            color: white;
+        }
+
+        .portfolio-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .portfolio-hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .back-to-main {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-main:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .portfolio-item {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .portfolio-image {
+            height: 250px;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portfolio-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .portfolio-item:hover .portfolio-image::before {
+            transform: translateX(100%);
+        }
+
+        .portfolio-icon {
+            font-size: 4rem;
+            color: white;
+            opacity: 0.8;
+        }
+
+        .portfolio-content {
+            padding: 2rem;
+        }
+
+        .portfolio-content h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .portfolio-content p {
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .portfolio-stats {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat {
+            background: var(--light-purple);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--dark-purple);
+        }
+
+        .portfolio-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .portfolio-header {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: var(--light-purple);
+        }
+
+        .portfolio-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .portfolio-header p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .shape {
+            position: absolute;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .shape:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        @media (max-width: 768px) {
+            .portfolio-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+                padding: 2rem 1rem;
+            }
+            
+            .portfolio-header {
+                padding: 2rem 1rem;
+            }
+            
+            .portfolio-header h2 {
+                font-size: 2rem;
+            }
+        }
+
+        [dir="ltr"] .portfolio-hero h1,
+        [dir="ltr"] .portfolio-hero p,
+        [dir="ltr"] .portfolio-content h3,
+        [dir="ltr"] .portfolio-content p,
+        [dir="ltr"] .portfolio-header h2,
+        [dir="ltr"] .portfolio-header p {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Animation classes for hero section */
+        .animate-fade-up {
+            opacity: 0;
+            transform: translateY(30px) scale(0.98);
+            animation: fadeUpAmazing 1.1s cubic-bezier(0.4,0,0.2,1) forwards;
+        }
+        .delay-1 { animation-delay: 0.5s; }
+        .delay-2 { animation-delay: 1s; }
+        @keyframes fadeUpAmazing {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.98);
+            }
+            60% {
+                opacity: 1;
+                transform: translateY(-8px) scale(1.03);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .glow-text {
+            text-shadow: 0 0 16px #fff, 0 0 32px #881dbf, 0 2px 8px rgba(0,0,0,0.2);
+            animation: glowPulse 2.5s ease-in-out infinite alternate;
+        }
+        @keyframes glowPulse {
+            0% { text-shadow: 0 0 16px #fff, 0 0 32px #881dbf, 0 2px 8px rgba(0,0,0,0.2); }
+            100% { text-shadow: 0 0 32px #fff, 0 0 48px #881dbf, 0 2px 16px rgba(0,0,0,0.3); }
+        }
+
+        .subtitle-glow {
+            text-shadow: 0 2px 8px #fff, 0 0 12px #881dbf;
+        }
+
+        .btn-glow {
+            box-shadow: 0 0 16px #fff, 0 0 32px #881dbf;
+            transition: box-shadow 0.3s;
+        }
+        .btn-glow:hover {
+            box-shadow: 0 0 32px #fff, 0 0 48px #881dbf;
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <nav class="navbar">
+        <div class="logo"><span class="logo-en">BARIQ</span><span class="logo-ar">بريق</span></div>
+        <ul class="nav-links">
+            <li><a href="index.html#hero">Home</a></li>
+            <li><a href="index.html#features">Features</a></li>
+            <li><a href="index.html#about">About Us</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <button class="lang-switch" onclick="toggleLanguage()">EN</button>
+        <button class="hamburger" aria-label="Open menu" aria-controls="mobile-menu" aria-expanded="false" onclick="toggleMobileMenu()">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+    </nav>
+
+    <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
+        <button class="close-mobile-menu" aria-label="Close menu" onclick="toggleMobileMenu()">&times;</button>
+        <ul>
+            <li><a href="index.html#hero" onclick="toggleMobileMenu()">Home</a></li>
+            <li><a href="index.html#features" onclick="toggleMobileMenu()">Features</a></li>
+            <li><a href="index.html#about" onclick="toggleMobileMenu()">About Us</a></li>
+            <li><a href="index.html#contact" onclick="toggleMobileMenu()">Contact</a></li>
+        </ul>
+    </div>
+
+    <section class="portfolio-hero">
+        <div class="portfolio-hero-bg-icons">
+            <i class="fi fi-sr-star"></i>
+            <i class="fi fi-sr-bolt"></i>
+            <i class="fi fi-sr-diamond"></i>
+            <i class="fi fi-sr-heart"></i>
+            <i class="fi fi-sr-magic"></i>
+        </div>
+        <div class="portfolio-hero-content">
+            <h1 class="portfolio-title animate-fade-up glow-text">Our Portfolio</h1>
+            <p class="portfolio-subtitle animate-fade-up delay-1 subtitle-glow">Discover our creative journey and successful projects that have transformed brands and driven results.</p>
+            <a href="index.html" class="back-to-main animate-fade-up delay-2 btn-glow">
+                <i class="fi fi-sr-arrow-left"></i>
+                <span class="back-text">Back to Main Site</span>
+            </a>
+        </div>
+        <div class="portfolio-hero-gradient"></div>
+    </section>
+
+    <section class="portfolio-header">
+        <h2>Featured Projects</h2>
+        <p>Explore our diverse portfolio showcasing digital marketing excellence across various industries and platforms.</p>
+    </section>
+
+    <section class="portfolio-grid">
+        <div class="portfolio-item">
+            <div class="portfolio-image">
+                <i class="fi fi-sr-search portfolio-icon"></i>
+            </div>
+            <div class="portfolio-content">
+                <h3 class="card-title">E-commerce SEO Campaign</h3>
+                <p class="card-desc">Comprehensive SEO optimization for a leading fashion retailer, resulting in 300% increase in organic traffic and 150% boost in online sales.</p>
+                <div class="portfolio-stats">
+                    <span class="stat">300% Traffic Increase</span>
+                    <span class="stat">150% Sales Boost</span>
+                </div>
+                <div class="portfolio-tags">
+                    <span class="tag">SEO</span>
+                    <span class="tag">E-commerce</span>
+                    <span class="tag">Fashion</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="portfolio-item">
+            <div class="portfolio-image">
+                <i class="fi fi-sr-users portfolio-icon"></i>
+            </div>
+            <div class="portfolio-content">
+                <h3 class="card-title">Restaurant Social Media</h3>
+                <p class="card-desc">Complete social media management for a premium restaurant chain, achieving 500% follower growth and 200% increase in customer engagement.</p>
+                <div class="portfolio-stats">
+                    <span class="stat">500% Follower Growth</span>
+                    <span class="stat">200% Engagement</span>
+                </div>
+                <div class="portfolio-tags">
+                    <span class="tag">Social Media</span>
+                    <span class="tag">Restaurant</span>
+                    <span class="tag">Content Creation</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="portfolio-item">
+            <div class="portfolio-image">
+                <i class="fi fi-sr-chart-line-up portfolio-icon"></i>
+            </div>
+            <div class="portfolio-content">
+                <h3 class="card-title">Tech Startup PPC</h3>
+                <p class="card-desc">Strategic PPC campaigns for a SaaS startup, achieving 400% ROI and 250% increase in qualified leads within 6 months.</p>
+                <div class="portfolio-stats">
+                    <span class="stat">400% ROI</span>
+                    <span class="stat">250% Lead Growth</span>
+                </div>
+                <div class="portfolio-tags">
+                    <span class="tag">PPC</span>
+                    <span class="tag">SaaS</span>
+                    <span class="tag">Lead Generation</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="portfolio-item">
+            <div class="portfolio-image">
+                <i class="fi fi-sr-document portfolio-icon"></i>
+            </div>
+            <div class="portfolio-content">
+                <h3 class="card-title">Healthcare Content Strategy</h3>
+                <p class="card-desc">Comprehensive content marketing strategy for a healthcare provider, resulting in 180% increase in website traffic and 120% boost in patient inquiries.</p>
+                <div class="portfolio-stats">
+                    <span class="stat">180% Traffic Increase</span>
+                    <span class="stat">120% Inquiry Boost</span>
+                </div>
+                <div class="portfolio-tags">
+                    <span class="tag">Content Marketing</span>
+                    <span class="tag">Healthcare</span>
+                    <span class="tag">Brand Awareness</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="portfolio-item">
+            <div class="portfolio-image">
+                <i class="fi fi-sr-mobile-button portfolio-icon"></i>
+            </div>
+            <div class="portfolio-content">
+                <h3 class="card-title">Mobile App Launch</h3>
+                <p class="card-desc">Complete digital marketing campaign for a mobile app launch, achieving 1M+ downloads and 4.8-star rating within the first month.</p>
+                <div class="portfolio-stats">
+                    <span class="stat">1M+ Downloads</span>
+                    <span class="stat">4.8 Rating</span>
+                </div>
+                <div class="portfolio-tags">
+                    <span class="tag">App Marketing</span>
+                    <span class="tag">Launch Campaign</span>
+                    <span class="tag">ASO</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="portfolio-item">
+            <div class="portfolio-image">
+                <i class="fi fi-sr-shop portfolio-icon"></i>
+            </div>
+            <div class="portfolio-content">
+                <h3 class="card-title">Retail Brand Transformation</h3>
+                <p class="card-desc">Complete brand transformation and digital presence overhaul for a traditional retail chain, resulting in 220% increase in online sales.</p>
+                <div class="portfolio-stats">
+                    <span class="stat">220% Sales Increase</span>
+                    <span class="stat">Brand Transformation</span>
+                </div>
+                <div class="portfolio-tags">
+                    <span class="tag">Branding</span>
+                    <span class="tag">Retail</span>
+                    <span class="tag">Digital Transformation</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2025 <span class="logo-en">BARIQ</span><span class="logo-ar">بريق</span>. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Language translations for portfolio page
+        const translations = {
+            en: {
+                portfolioTitle: 'Our Portfolio',
+                portfolioSubtitle: 'Discover our creative journey and successful projects that have transformed brands and driven results.',
+                backText: 'Back to Main Site',
+                featuredProjects: 'Featured Projects',
+                featuredSubtitle: 'Explore our diverse portfolio showcasing digital marketing excellence across various industries and platforms.',
+                home: 'Home',
+                features: 'Features',
+                aboutUs: 'About Us',
+                contact: 'Contact',
+                langButton: 'AR',
+                cards: [
+                    {
+                        title: 'E-commerce SEO Campaign',
+                        desc: 'Comprehensive SEO optimization for a leading fashion retailer, resulting in 300% increase in organic traffic and 150% boost in online sales.',
+                        stats: ['300% Traffic Increase', '150% Sales Boost'],
+                        tags: ['SEO', 'E-commerce', 'Fashion']
+                    },
+                    {
+                        title: 'Restaurant Social Media',
+                        desc: 'Complete social media management for a premium restaurant chain, achieving 500% follower growth and 200% increase in customer engagement.',
+                        stats: ['500% Follower Growth', '200% Engagement'],
+                        tags: ['Social Media', 'Restaurant', 'Content Creation']
+                    },
+                    {
+                        title: 'Tech Startup PPC',
+                        desc: 'Strategic PPC campaigns for a SaaS startup, achieving 400% ROI and 250% increase in qualified leads within 6 months.',
+                        stats: ['400% ROI', '250% Lead Growth'],
+                        tags: ['PPC', 'SaaS', 'Lead Generation']
+                    },
+                    {
+                        title: 'Healthcare Content Strategy',
+                        desc: 'Comprehensive content marketing strategy for a healthcare provider, resulting in 180% increase in website traffic and 120% boost in patient inquiries.',
+                        stats: ['180% Traffic Increase', '120% Inquiry Boost'],
+                        tags: ['Content Marketing', 'Healthcare', 'Brand Awareness']
+                    },
+                    {
+                        title: 'Mobile App Launch',
+                        desc: 'Complete digital marketing campaign for a mobile app launch, achieving 1M+ downloads and 4.8-star rating within the first month.',
+                        stats: ['1M+ Downloads', '4.8 Rating'],
+                        tags: ['App Marketing', 'Launch Campaign', 'ASO']
+                    },
+                    {
+                        title: 'Retail Brand Transformation',
+                        desc: 'Complete brand transformation and digital presence overhaul for a traditional retail chain, resulting in 220% increase in online sales.',
+                        stats: ['220% Sales Increase', 'Brand Transformation'],
+                        tags: ['Branding', 'Retail', 'Digital Transformation']
+                    }
+                ]
+            },
+            ar: {
+                portfolioTitle: 'معرض أعمالنا',
+                portfolioSubtitle: 'اكتشف رحلتنا الإبداعية والمشاريع الناجحة التي حولت العلامات التجارية وحققت نتائج مذهلة.',
+                backText: 'العودة للموقع الرئيسي',
+                featuredProjects: 'المشاريع المميزة',
+                featuredSubtitle: 'استكشف معرض أعمالنا المتنوع الذي يعرض التميز في التسويق الرقمي عبر مختلف الصناعات والمنصات.',
+                home: 'الرئيسية',
+                features: 'المميزات',
+                aboutUs: 'من نحن',
+                contact: 'اتصل بنا',
+                langButton: 'EN',
+                cards: [
+                    {
+                        title: 'حملة تحسين محركات البحث لمتجر إلكتروني',
+                        desc: 'تحسين شامل لمحركات البحث لمتجر أزياء رائد، مما أدى إلى زيادة الزيارات العضوية بنسبة 300% وزيادة المبيعات عبر الإنترنت بنسبة 150%.',
+                        stats: ['%300 زيادة في الزيارات', '%150 زيادة في المبيعات'],
+                        tags: ['تحسين محركات البحث', 'متجر إلكتروني', 'أزياء']
+                    },
+                    {
+                        title: 'إدارة وسائل التواصل لمطعم',
+                        desc: 'إدارة كاملة لوسائل التواصل الاجتماعي لسلسلة مطاعم فاخرة، مع تحقيق نمو في المتابعين بنسبة 500% وزيادة التفاعل بنسبة 200%.',
+                        stats: ['%500 نمو المتابعين', '%200 تفاعل'],
+                        tags: ['وسائل التواصل', 'مطعم', 'إنشاء محتوى']
+                    },
+                    {
+                        title: 'حملات الدفع بالنقرة لشركة تقنية',
+                        desc: 'حملات دفع بالنقرة استراتيجية لشركة ناشئة في مجال البرمجيات، مع تحقيق عائد استثمار 400% وزيادة العملاء المحتملين بنسبة 250% خلال 6 أشهر.',
+                        stats: ['%400 عائد استثمار', '%250 نمو العملاء'],
+                        tags: ['دفع بالنقرة', 'برمجيات كخدمة', 'توليد العملاء']
+                    },
+                    {
+                        title: 'استراتيجية محتوى لقطاع الصحة',
+                        desc: 'استراتيجية تسويق محتوى شاملة لمزود رعاية صحية، مما أدى إلى زيادة زيارات الموقع بنسبة 180% وزيادة الاستفسارات بنسبة 120%.',
+                        stats: ['%180 زيادة الزيارات', '%120 زيادة الاستفسارات'],
+                        tags: ['تسويق المحتوى', 'رعاية صحية', 'رفع الوعي']
+                    },
+                    {
+                        title: 'إطلاق تطبيق جوال',
+                        desc: 'حملة تسويق رقمي كاملة لإطلاق تطبيق جوال، مع تحقيق أكثر من مليون تحميل وتقييم 4.8 نجمة في الشهر الأول.',
+                        stats: ['+1M تحميل', '4.8 تقييم'],
+                        tags: ['تسويق التطبيقات', 'حملة إطلاق', 'تحسين المتجر']
+                    },
+                    {
+                        title: 'تحول علامة تجارية للبيع بالتجزئة',
+                        desc: 'تحول كامل للعلامة التجارية والحضور الرقمي لسلسلة بيع بالتجزئة تقليدية، مما أدى إلى زيادة المبيعات عبر الإنترنت بنسبة 220%.',
+                        stats: ['%220 زيادة المبيعات', 'تحول العلامة التجارية'],
+                        tags: ['بناء العلامة', 'بيع بالتجزئة', 'التحول الرقمي']
+                    }
+                ]
+            }
+        };
+
+        let currentLang = 'ar';
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+            updateLanguage();
+        }
+
+        function updateLanguage() {
+            const lang = translations[currentLang];
+            
+            // Update portfolio content
+            document.querySelector('.portfolio-title').textContent = lang.portfolioTitle;
+            document.querySelector('.portfolio-subtitle').textContent = lang.portfolioSubtitle;
+            document.querySelector('.back-text').textContent = lang.backText;
+            document.querySelector('.portfolio-header h2').textContent = lang.featuredProjects;
+            document.querySelector('.portfolio-header p').textContent = lang.featuredSubtitle;
+            
+            // Update navigation
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks[0].textContent = lang.home;
+            navLinks[1].textContent = lang.features;
+            navLinks[2].textContent = lang.aboutUs;
+            navLinks[3].textContent = lang.contact;
+            
+            // Update mobile menu
+            const mobileLinks = document.querySelectorAll('.mobile-menu a');
+            mobileLinks[0].textContent = lang.home;
+            mobileLinks[1].textContent = lang.features;
+            mobileLinks[2].textContent = lang.aboutUs;
+            mobileLinks[3].textContent = lang.contact;
+            
+            // Update language button
+            document.querySelector('.lang-switch').textContent = lang.langButton;
+            
+            // Update document direction
+            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = currentLang === 'ar' ? 'ar' : 'en';
+            // Update portfolio cards
+            const cardEls = document.querySelectorAll('.portfolio-item');
+            lang.cards.forEach((card, i) => {
+                if (cardEls[i]) {
+                    cardEls[i].querySelector('.card-title').textContent = card.title;
+                    cardEls[i].querySelector('.card-desc').textContent = card.desc;
+                    const statEls = cardEls[i].querySelectorAll('.stat');
+                    card.stats.forEach((stat, j) => {
+                        if (statEls[j]) statEls[j].textContent = stat;
+                    });
+                    const tagEls = cardEls[i].querySelectorAll('.tag');
+                    card.tags.forEach((tag, j) => {
+                        if (tagEls[j]) tagEls[j].textContent = tag;
+                    });
+                }
+            });
+        }
+
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const hamburger = document.querySelector('.hamburger');
+            const bars = hamburger.querySelectorAll('.bar');
+            const isOpen = mobileMenu.classList.toggle('open');
+            mobileMenu.setAttribute('aria-hidden', !isOpen);
+            hamburger.setAttribute('aria-expanded', isOpen);
+            
+            // Animate hamburger bars
+            if (isOpen) {
+                bars[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                bars[1].style.opacity = '0';
+                bars[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+                document.body.style.overflow = 'hidden';
+            } else {
+                bars[0].style.transform = 'none';
+                bars[1].style.opacity = '1';
+                bars[2].style.transform = 'none';
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Initialize language
+        document.addEventListener('DOMContentLoaded', function() {
+            updateLanguage();
+            // Animate hero section on load
+            document.querySelectorAll('.portfolio-hero-content .animate-fade-up').forEach(function(el) {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                setTimeout(function() {
+                    el.style.transition = 'all 0.8s cubic-bezier(0.4,0,0.2,1)';
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, parseFloat(getComputedStyle(el).animationDelay || 0) * 1000 || 0);
+            });
+        });
+    </script>
+</body>
+</html> 
